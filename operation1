@@ -1,0 +1,38 @@
+//creating node class
+class node{
+    int data;
+    node next;
+    node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+public class Main {
+    node head;
+    node tail;
+//method to assign the value and link the nodes
+    void linkNode(int data) {
+        node newNode = new node(data);//creates the node class for every call and assigns values to node
+        if (head == null) {//initially head is not a node
+            head = newNode;//head is assigned to newly created node(first node)
+            tail = newNode;//tail also to the first node
+        } else {
+            tail.next = newNode;//tail moves with the newly created nodes(until the end of list)
+            tail = newNode;
+        }
+    }
+    void diaplayList() {
+        node temp = head;//temp starts from head
+        while (temp != null) {
+            System.out.println(temp.data);
+            temp = temp.next;
+        }
+    }
+        public static void main (String[]args){
+            Main linkedlis1 = new Main();//object of main class to call the non static method
+            linkedlis1.linkNode(10);
+            linkedlis1.linkNode(20);
+            linkedlis1.linkNode(30);
+            linkedlis1.diaplayList();
+        }
+    }
