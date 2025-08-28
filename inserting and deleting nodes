@@ -1,0 +1,90 @@
+class node {
+    int data;
+    node next;
+
+    node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+public class Main{
+    node head;
+    node tail;
+    void linkList(int data){
+        node newNode=new node(data);
+        if(head==null){
+            head=newNode;
+            tail=newNode;
+        }else{
+            tail.next=newNode;
+            tail=newNode;
+        }
+    }
+    void display(){
+        node temp=head;
+        while(temp!=null){
+            System.out.println(temp.data);
+            temp=temp.next;
+        }
+    }
+    void addAtHead(int data){//inseting at head
+        node nodenew=new node(data);
+        nodenew.next=head;
+        head=nodenew;
+    }
+    void addAtEnd(int data){//inserting after the tail
+        node newNode=new node(data);
+        tail.next=newNode;
+        tail=newNode;
+    }
+    void inset(int data,int ref){//insrting at random position
+        node newNode=new node(data);
+        node start=head;
+        node go=head;
+        while(start.data!=ref){
+            start=start.next;
+            go=go.next;
+        }
+        go=go.next;
+        start.next=newNode;
+        newNode.next=go;
+    }
+    void deleteHeadNode(){//deleting the head node
+        node ree=head;
+        ree=ree.next;
+        head=ree;
+    }
+    void deleteNode(int data){//deleting a random ndoe
+        node ref=head;
+        node flag=head;
+        while(ref.next.data!=data){
+            ref=ref.next;
+            flag=flag.next;
+        }
+        flag=flag.next.next;
+        ref.next=flag;
+
+    }
+    void deleteTail(){//deleting the tail node
+        node flag=head;
+        while(flag!=tail){
+            flag=flag.next;
+        }
+        flag.next=null;
+        tail=flag;
+    }
+    public static void main(String[] args) {
+      Main linkedList=new Main();
+     linkedList.linkList(10);
+     linkedList.linkList(20);
+     linkedList.linkList(40);
+     linkedList.linkList(50);
+     linkedList.addAtHead(100);
+     linkedList.addAtEnd(101);
+     linkedList.inset(102,101);
+     linkedList.deleteHeadNode();
+     linkedList.deleteNode(40);
+     linkedList.deleteTail();
+     linkedList.display();
+}
+}
