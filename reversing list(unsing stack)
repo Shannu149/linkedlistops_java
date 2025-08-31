@@ -1,0 +1,66 @@
+import java.util.Stack;
+
+class node {
+    int data;
+    node next;
+
+    node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class Main {
+    node head;
+    node tail;
+
+    void linkNode(int data) {
+        node newNode = new node(data);
+        if (head == null) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail.next = newNode;
+            tail = newNode;
+        }
+    }
+
+    void reverseList() {
+        Stack<Integer> st = new Stack<>();
+        if (head == null) return;
+
+        node temp = head;
+        while (temp != null) {
+            st.push(temp.data);
+            temp = temp.next;
+        }
+
+        node ref1 = null;
+        node ref2 = null;
+        while (!st.isEmpty()) {
+            node newNode = new node(st.pop());
+            if (ref1 == null) {
+                ref1 = newNode;
+                ref2 = newNode;
+            } else {
+                ref2.next = newNode;
+                ref2 = newNode;
+            }
+        }
+
+        node temp2 = ref1;
+        while (temp2 != null) {
+            System.out.println(temp2.data);
+            temp2 = temp2.next;
+        }
+    }
+
+    public static void main(String[] args) {
+        Main linkedList = new Main();
+        linkedList.linkNode(10);
+        linkedList.linkNode(20);
+        linkedList.linkNode(30);
+        linkedList.linkNode(40);
+        linkedList.reverseList();
+    }
+}
