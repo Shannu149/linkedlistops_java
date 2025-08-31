@@ -1,0 +1,51 @@
+class node{
+    int data;
+    node next;
+    node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+public class Main{
+    node head;
+    node tail;
+    void linkNode(int data){
+        node newNode=new node(data);
+        if(head==null){
+            head=newNode;
+            tail=newNode;
+        }else{
+            tail.next=newNode;
+            tail=newNode;
+        }
+    }
+    void reverseList(){//reversing the list
+        node prev=null;
+        node curr=head;
+        node next;// prev   curr  next
+        while(curr!=null){
+            next=curr.next;//next goes to the next node of current
+            curr.next=prev;//curr is linked to the prev as its next element
+            prev=curr;//prev is updated to forward node
+            curr=next;//curr is sent to its next node
+        }
+        head=prev;//prev is set as head
+    }
+    void display(){
+        node temp=head;
+        while(temp!=null){
+            System.out.println(temp.data);
+            temp=temp.next;
+        }
+    }
+    public static void main(String[] args) {
+        Main linkedList=new Main();
+        linkedList.linkNode(10);
+        linkedList.linkNode(20);
+        linkedList.linkNode(30);
+        linkedList.linkNode(40);
+        linkedList.display();
+        linkedList.reverseList();
+        linkedList.display();
+    }
+}
